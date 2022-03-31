@@ -20,12 +20,3 @@ export default function Layout(props: Props) {
     </div>
   )
 }
-
-/*
-apiKey: "AIzaSyABqTshlyYuipUztVvImnVGsuE8NFxHvAI",
-authDomain: "react-firebase-a25f9.firebaseapp.com",
-projectId: "react-firebase-a25f9",
-storageBucket: "react-firebase-a25f9.appspot.com",
-messagingSenderId: "23189848355",
-appId: "1:23189848355:web:c3521cf6cfa78849f84c96"
-*/

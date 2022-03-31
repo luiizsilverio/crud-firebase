@@ -41,7 +41,7 @@ export default function Tabela(props: Props) {
 
               {
                 exibirAcoes &&
-                  <td className="flex justify-center items-center">
+                  <td className="flex justify-center items-center p-1">
                     {
                       props.clienteSelecionado &&
                         <button
@@ -49,7 +49,7 @@ export default function Tabela(props: Props) {
                           className={`
                             flex justify-center item-center
                             p-2 text-purple-700 rounded-full
-                            m-1 hover:bg-purple-50
+                            m-1 hover:bg-purple-50 h-6
                           `}
                         >
                           {EditSvg}
@@ -63,7 +63,7 @@ export default function Tabela(props: Props) {
                           className={`
                             flex justify-center item-center
                             p-2 text-red-500 rounded-full
-                            m-1 hover:bg-purple-50
+                            m-1 hover:bg-purple-50 h-6
                           `}
                         >
                           {DeleteSvg}
