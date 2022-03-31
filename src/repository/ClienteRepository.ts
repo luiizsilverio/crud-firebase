@@ -1,8 +1,7 @@
 import firebase from "../firebase/config";
 import Cliente from "../model/Cliente";
-import ClienteRepositorio from "./ClienteRepositorio";
 
-export default class ColecaoCliente implements ClienteRepositorio {
+export default class ClienteRepository {
 
   #conversor = {
     toFirestore(cliente: Cliente) {
@@ -34,7 +33,7 @@ export default class ColecaoCliente implements ClienteRepositorio {
   }
 
   async excluir(cliente: Cliente): Promise<void> {
-    return this.#colecao().doc(cliente.id).delete()
+    return await this.#colecao().doc(cliente.id).delete()
   }
 
   async obterTodos(): Promise<Cliente[]> {

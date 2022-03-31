@@ -1,43 +1,57 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import Botao from '../components/Botao'
 import Formulario from '../components/Formulario'
 import Layout from '../components/Layout'
 import Tabela from '../components/Tabela'
+import ClienteRepository from '../repository/ClienteRepository'
 import Cliente from '../model/Cliente'
 
-const contatos: Cliente[] = [
-  new Cliente('Luiz', 48, '3232-7752', '1'),
-  new Cliente('José Roberto', 55, '3112-9600', '2'),
-  new Cliente('Lucas', 34, '9199-5500', '3'),
-  new Cliente('Gabriel', 25, '9985-9999', '4'),
-]
 
 type Tela = 'tabela' | 'formulário'
 
 export default function Home() {
   const [cliente, setCliente] = useState<Cliente>(Cliente.vazio())
+  const [contatos, setContatos] = useState<Cliente[]>([])
   const [telaVisivel, setTelaVisivel] = useState<Tela>('tabela')
+
+  const repo = new ClienteRepository()
+
 
   function seleciona(cliente: Cliente) {
     setCliente(cliente)
     setTelaVisivel('formulário')
   }
 
-  function exclui(cliente: Cliente) {
-    console.log('exclui')
-  }
-
-  function salvarCliente(cliente: Cliente) {
-
-    setTelaVisivel('tabela')
-  }
 
   function novoCliente() {
     setCliente(Cliente.vazio())
     setTelaVisivel('formulário')
   }
+
+
+  async function excluir(cliente: Cliente) {
+    await repo.excluir(cliente)
+    obterTodos()
+  }
+
+
+  async function salvarCliente(cliente: Cliente) {
+    await repo.salvar(cliente)
+    obterTodos()
+  }
+
+
+  function obterTodos() {
+    repo.obterTodos().then(clientes => {
+      setContatos(clientes)
+      setTelaVisivel('tabela')
+    })
+  }
+
+  useEffect(obterTodos, [])
+
 
   return (
     <>
@@ -69,8 +83,8 @@ export default function Home() {
                 </div>
                 <Tabela
                   clientes={contatos}
-                  clienteSelecionado={seleciona}
-                  clienteExcluido={exclui}
+                  selecionarCliente={seleciona}
+                  excluirCliente={excluir}
                 />
               </>
             )

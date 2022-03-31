@@ -3,12 +3,12 @@ import Cliente from "../model/Cliente"
 
 interface Props {
   clientes: Cliente[]
-  clienteSelecionado?: (cliente: Cliente) => void
-  clienteExcluido?: (cliente: Cliente) => void
+  selecionarCliente?: (cliente: Cliente) => void
+  excluirCliente?: (cliente: Cliente) => void
 }
 
 export default function Tabela(props: Props) {
-  const exibirAcoes = props.clienteExcluido || props.clienteSelecionado
+  const exibirAcoes = props.excluirCliente || props.selecionarCliente
 
   return (
     <table className="w-full rounded-xl overflow-hidden">
@@ -43,9 +43,9 @@ export default function Tabela(props: Props) {
                 exibirAcoes &&
                   <td className="flex justify-center items-center p-1">
                     {
-                      props.clienteSelecionado &&
+                      props.selecionarCliente &&
                         <button
-                          onClick={() => props.clienteSelecionado?.(cliente)}
+                          onClick={() => props.selecionarCliente?.(cliente)}
                           className={`
                             flex justify-center item-center
                             p-2 text-purple-700 rounded-full
@@ -57,9 +57,9 @@ export default function Tabela(props: Props) {
                     }
 
                     {
-                      props.clienteExcluido &&
+                      props.excluirCliente &&
                         <button
-                          onClick={() => props.clienteExcluido?.(cliente)}
+                          onClick={() => props.excluirCliente?.(cliente)}
                           className={`
                             flex justify-center item-center
                             p-2 text-red-500 rounded-full
