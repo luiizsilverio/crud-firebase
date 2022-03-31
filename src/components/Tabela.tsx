@@ -41,7 +41,7 @@ export default function Tabela(props: Props) {
 
               {
                 exibirAcoes &&
-                  <td className="p-3 flex justify-center">
+                  <td className="flex justify-center items-center">
                     {
                       props.clienteSelecionado &&
                         <button
