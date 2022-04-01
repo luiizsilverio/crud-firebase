@@ -1,6 +1,7 @@
 {
   "name": "crud-firebase",
   "version": "0.1.0",
+  "author": "Luiz Oliveira <luiiz.silverio@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",
